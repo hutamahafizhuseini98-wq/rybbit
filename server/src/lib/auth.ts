@@ -209,6 +209,11 @@ const pluginList = [
           customPlan: {
             type: "string",
             required: false,
+            // Column is snake_case (jsonb "custom_plan" in schema.ts). Without
+            // this, Better Auth 1.7's startup schema check looks for a
+            // "customPlan" column, reports SCHEMA_MISMATCH, and every
+            // /api/auth/* request 500s.
+            fieldName: "custom_plan",
           },
         },
       },
