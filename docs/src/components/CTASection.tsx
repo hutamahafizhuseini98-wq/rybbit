@@ -99,11 +99,11 @@ export function CTASection({
             </TrackedButton>
           </div>
 
-          <p className="mt-6 text-sm text-emerald-100/60">
+          {/* <p className="mt-6 text-sm text-emerald-100/60">
             {useDomainInput
               ? t("No account needed. Claim your site later with a 7-day free trial.")
               : t("7-day free trial. Cancel anytime.")}
-          </p>
+          </p> */}
         </div>
       </div>
     </section>

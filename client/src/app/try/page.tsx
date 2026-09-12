@@ -125,7 +125,7 @@ function TryPageContent() {
             className="h-11 w-full bg-emerald-600 text-white transition-all duration-300 hover:bg-emerald-500"
             disabled={isLoading || !domain || !isValidDomain(normalizeDomain(domain))}
           >
-            {t("See my dashboard")}
+            {t("Add my site")}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
 

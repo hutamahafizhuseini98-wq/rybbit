@@ -73,7 +73,7 @@ export function HeroSection({ title, subtitle, showEUFlag = true, showGitHubStar
                 eventProps={{ location: "hero", button_text: "Live demo" }}
                 className="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-neutral-600 transition-colors duration-200 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 focus-visible:ring-offset-2 dark:text-neutral-400 dark:hover:text-white dark:focus-visible:ring-offset-neutral-950"
               >
-                {t("Or open the live demo")}
+                {t("Live demo")}
                 <ExternalLink
                   className="size-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
                   aria-hidden="true"
@@ -81,9 +81,9 @@ export function HeroSection({ title, subtitle, showEUFlag = true, showGitHubStar
               </TrackedButton>
             </div>
 
-            <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">
+            {/* <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">
               {t("No account needed. Claim your site later with a 7-day free trial.")}
-            </p>
+            </p> */}
           </div>
         </div>
 

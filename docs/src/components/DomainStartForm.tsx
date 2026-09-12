@@ -90,7 +90,7 @@ export function DomainStartForm({ location, variant = "hero", buttonText, classN
               : "group inline-flex min-h-11 shrink-0 items-center justify-center gap-2 bg-emerald-600 px-4 text-sm font-medium text-white transition-colors duration-200 hover:bg-emerald-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-inset"
           }
         >
-          {buttonText ?? t("See my dashboard")}
+          {buttonText ?? t("Add my site")}
           <ArrowRight
             className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
             aria-hidden="true"
