@@ -34,7 +34,7 @@ export function Header() {
         {user && !isGlobe && !isUnclaimed && (
           <>
             <DemoSignupBanner />
-            <AffiliateBanner />
+            {/* <AffiliateBanner /> */}
             <FreePlanBanner />
             <UsageBanners />
           </>
