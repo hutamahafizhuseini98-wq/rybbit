@@ -30,7 +30,7 @@ export function CTASection({
   const resolvedDescription =
     description ?? t("The full analytics surface on one dashboard: cookieless, open source, and live in minutes.");
   const resolvedPrimaryButtonHref = primaryButtonHref ?? "https://app.rybbit.io/signup";
-  const resolvedPrimaryButtonText = primaryButtonText ?? t("Start for $0");
+  const resolvedPrimaryButtonText = primaryButtonText ?? t("Start free trial for $0");
   const resolvedSecondaryButtonText = secondaryButtonText ?? t("Live demo");
   // Pages that route the primary action somewhere else keep their button; the
   // default signup destination becomes the domain input.
