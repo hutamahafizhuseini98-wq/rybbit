@@ -8,7 +8,7 @@ vi.mock("./auth.js", () => ({
     api: {
       getSession: vi.fn(async () => null),
       verifyApiKey: vi.fn(async () => ({ valid: false })),
-      getMcpSession: vi.fn(async () => null),
+      verifyRybbitOAuthToken: vi.fn(async () => null),
     },
   },
 }));
@@ -85,6 +85,7 @@ CREATE TABLE "member_site_access" (
   "created_by" text
 );
 CREATE TABLE "team" (
+  "memberCount" integer NOT NULL DEFAULT 0,
   "id" text PRIMARY KEY,
   "name" text NOT NULL,
   "organizationId" text NOT NULL,
@@ -92,6 +93,7 @@ CREATE TABLE "team" (
   "updatedAt" timestamp
 );
 CREATE TABLE "teamMember" (
+  "membershipKey" text UNIQUE,
   "id" text PRIMARY KEY,
   "teamId" text NOT NULL,
   "userId" text NOT NULL,
@@ -417,9 +419,9 @@ describe("checkApiKey — scope carrying", () => {
 
   beforeEach(async () => {
     vi.mocked(auth.api.verifyApiKey).mockReset();
-    vi.mocked(auth.api.getMcpSession as any).mockReset();
+    vi.mocked(auth.api.verifyRybbitOAuthToken as any).mockReset();
     vi.mocked(auth.api.verifyApiKey).mockResolvedValue({ valid: false } as any);
-    vi.mocked(auth.api.getMcpSession as any).mockResolvedValue(null);
+    vi.mocked(auth.api.verifyRybbitOAuthToken as any).mockResolvedValue(null);
     await db.delete(member).where(eq(member.organizationId, "org_scope"));
     await db
       .insert(member)
@@ -452,7 +454,7 @@ describe("checkApiKey — scope carrying", () => {
   });
 
   it("carries OAuth token scopes as statements via the fallback", async () => {
-    vi.mocked(auth.api.getMcpSession as any).mockResolvedValue({
+    vi.mocked(auth.api.verifyRybbitOAuthToken as any).mockResolvedValue({
       userId: "user_scope",
       scopes: "openid goals:read",
       accessTokenExpiresAt: new Date(Date.now() + 3600_000),
@@ -465,7 +467,7 @@ describe("checkApiKey — scope carrying", () => {
   });
 
   it("OAuth tokens without custom scopes are unrestricted", async () => {
-    vi.mocked(auth.api.getMcpSession as any).mockResolvedValue({
+    vi.mocked(auth.api.verifyRybbitOAuthToken as any).mockResolvedValue({
       userId: "user_scope",
       scopes: "openid",
       accessTokenExpiresAt: new Date(Date.now() + 3600_000),
@@ -531,8 +533,8 @@ describe("checkApiKey — organization-owned keys", () => {
 
   beforeEach(async () => {
     vi.mocked(auth.api.verifyApiKey).mockReset();
-    vi.mocked(auth.api.getMcpSession as any).mockReset();
-    vi.mocked(auth.api.getMcpSession as any).mockResolvedValue(null);
+    vi.mocked(auth.api.verifyRybbitOAuthToken as any).mockReset();
+    vi.mocked(auth.api.verifyRybbitOAuthToken as any).mockResolvedValue(null);
     await db.insert(sites).values([
       { id: "hex_org_a", siteId: 501, name: "org-a-site", domain: "a.example.com", organizationId: "org_a" },
       { id: "hex_org_b", siteId: 502, name: "org-b-site", domain: "b.example.com", organizationId: "org_b" },

@@ -27,7 +27,7 @@ import { logger } from "./logger/logger.js";
 // The MCP gate injects fakes; the REST layer always uses better-auth.
 const bearerResolverDeps: BearerResolverDeps = {
   verifyApiKey: apiKey => auth.api.verifyApiKey({ body: { key: apiKey } }),
-  getOAuthSession: token => auth.api.getMcpSession({ headers: new Headers({ authorization: `Bearer ${token}` }) }),
+  getOAuthSession: token => auth.api.verifyRybbitOAuthToken({ body: { token } }),
 };
 
 // Several guards resolve the same credential more than once per HTTP request:

@@ -127,6 +127,13 @@
       "when": 1788393490335,
       "tag": "0017_burly_nick_fury",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1788910036039,
+      "tag": "0018_better_auth_173",
+      "breakpoints": true
     }
   ]
 }
